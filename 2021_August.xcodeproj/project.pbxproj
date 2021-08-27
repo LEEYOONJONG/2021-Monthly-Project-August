@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98162DB626D67307008D401D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98162DB526D67307008D401D /* HomeViewController.swift */; };
+		98162DB826D673EB008D401D /* TimeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98162DB726D673EB008D401D /* TimeSettingViewController.swift */; };
 		9875D8BB26CFB400008E6D06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9875D8BA26CFB400008E6D06 /* AppDelegate.swift */; };
 		9875D8BD26CFB400008E6D06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9875D8BC26CFB400008E6D06 /* SceneDelegate.swift */; };
-		9875D8BF26CFB400008E6D06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9875D8BE26CFB400008E6D06 /* ViewController.swift */; };
 		9875D8C226CFB400008E6D06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9875D8C026CFB400008E6D06 /* Main.storyboard */; };
 		9875D8C426CFB403008E6D06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9875D8C326CFB403008E6D06 /* Assets.xcassets */; };
 		9875D8C726CFB403008E6D06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9875D8C526CFB403008E6D06 /* LaunchScreen.storyboard */; };
+		98B250D726D766F7002A2DFB /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B250D626D766F7002A2DFB /* LoginManager.swift */; };
+		B74205475631434AABEFB895 /* Pods_2021_August.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B42830CC5FF32225F43130 /* Pods_2021_August.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		700328AB8718053A0A88E9C2 /* Pods-2021_August.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-2021_August.debug.xcconfig"; path = "Target Support Files/Pods-2021_August/Pods-2021_August.debug.xcconfig"; sourceTree = "<group>"; };
+		76B42830CC5FF32225F43130 /* Pods_2021_August.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_2021_August.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98162DB526D67307008D401D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		98162DB726D673EB008D401D /* TimeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingViewController.swift; sourceTree = "<group>"; };
 		9875D8B726CFB400008E6D06 /* 2021_August.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2021_August.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9875D8BA26CFB400008E6D06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9875D8BC26CFB400008E6D06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9875D8BE26CFB400008E6D06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9875D8C126CFB400008E6D06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9875D8C326CFB403008E6D06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9875D8C626CFB403008E6D06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9875D8C826CFB403008E6D06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98B250D626D766F7002A2DFB /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		A48540A79AB12BA903AE7FA4 /* Pods-2021_August.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-2021_August.release.xcconfig"; path = "Target Support Files/Pods-2021_August/Pods-2021_August.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +39,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B74205475631434AABEFB895 /* Pods_2021_August.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3504E08A01DF0F636C7A3802 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				700328AB8718053A0A88E9C2 /* Pods-2021_August.debug.xcconfig */,
+				A48540A79AB12BA903AE7FA4 /* Pods-2021_August.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		85693BD0AEF88809D152E366 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76B42830CC5FF32225F43130 /* Pods_2021_August.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9875D8AE26CFB400008E6D06 = {
 			isa = PBXGroup;
 			children = (
 				9875D8B926CFB400008E6D06 /* 2021_August */,
 				9875D8B826CFB400008E6D06 /* Products */,
+				3504E08A01DF0F636C7A3802 /* Pods */,
+				85693BD0AEF88809D152E366 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,11 +87,13 @@
 			children = (
 				9875D8BA26CFB400008E6D06 /* AppDelegate.swift */,
 				9875D8BC26CFB400008E6D06 /* SceneDelegate.swift */,
-				9875D8BE26CFB400008E6D06 /* ViewController.swift */,
 				9875D8C026CFB400008E6D06 /* Main.storyboard */,
 				9875D8C326CFB403008E6D06 /* Assets.xcassets */,
 				9875D8C526CFB403008E6D06 /* LaunchScreen.storyboard */,
 				9875D8C826CFB403008E6D06 /* Info.plist */,
+				98162DB526D67307008D401D /* HomeViewController.swift */,
+				98B250D626D766F7002A2DFB /* LoginManager.swift */,
+				98162DB726D673EB008D401D /* TimeSettingViewController.swift */,
 			);
 			path = 2021_August;
 			sourceTree = "<group>";
@@ -74,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9875D8CB26CFB403008E6D06 /* Build configuration list for PBXNativeTarget "2021_August" */;
 			buildPhases = (
+				375069B900149098E5955282 /* [CP] Check Pods Manifest.lock */,
 				9875D8B326CFB400008E6D06 /* Sources */,
 				9875D8B426CFB400008E6D06 /* Frameworks */,
 				9875D8B526CFB400008E6D06 /* Resources */,
+				9771C2F1259786246A6FEC43 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,14 +165,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		375069B900149098E5955282 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-2021_August-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9771C2F1259786246A6FEC43 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-2021_August/Pods-2021_August-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-2021_August/Pods-2021_August-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-2021_August/Pods-2021_August-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9875D8B326CFB400008E6D06 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9875D8BF26CFB400008E6D06 /* ViewController.swift in Sources */,
+				98B250D726D766F7002A2DFB /* LoginManager.swift in Sources */,
 				9875D8BB26CFB400008E6D06 /* AppDelegate.swift in Sources */,
 				9875D8BD26CFB400008E6D06 /* SceneDelegate.swift in Sources */,
+				98162DB826D673EB008D401D /* TimeSettingViewController.swift in Sources */,
+				98162DB626D67307008D401D /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +360,7 @@
 		};
 		9875D8CC26CFB403008E6D06 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 700328AB8718053A0A88E9C2 /* Pods-2021_August.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +380,7 @@
 		};
 		9875D8CD26CFB403008E6D06 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A48540A79AB12BA903AE7FA4 /* Pods-2021_August.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

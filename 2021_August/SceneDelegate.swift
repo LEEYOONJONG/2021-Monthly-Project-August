@@ -11,6 +11,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print(URLContexts)
+        if let url = URLContexts.first?.url {
+            print("SceneDelegate url : ", url)
+            if url.absoluteString.starts(with: ""){
+                if let code = url.absoluteString.split(separator: "=").last.map({ String($0) }){
+                    print("SceneDelegate code : ", code)
+                    LoginManager.shared.requestAccessToken(with: code)
+                }
+            }
+        }
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
