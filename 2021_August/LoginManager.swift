@@ -18,7 +18,7 @@ class LoginManager {
     func requestCode(){
         let scope="user"
         let urlString = "https://github.com/login/oauth/authorize?client_id=\(client_id)&scope=\(scope)"
-        OperationQueue().addOperation {
+        OperationQueue.main.addOperation {
             if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
                 // redirect to scene(_:openURLContexts:) if user authorized
@@ -61,7 +61,7 @@ class LoginManager {
                 switch response.result{
                 case .success(let jsonData):
                     //                    print(json as! [String: Any])
-                    print(jsonData)
+//                    print(jsonData)
                     let jsonDictionary = [jsonData]
                     for i in jsonDictionary{
                         if let obj = i as? [String: Any]{
@@ -109,7 +109,7 @@ class LoginManager {
                                     print("오늘의 commit 수는 ", try i.attr("data-count"))
                                     self.commitNum = "\(Int(try i.attr("data-count")) ?? -1)"
                                     DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
-                                        self.callback?("\(self.commitNum)회", "\(continuousCommit)")
+                                        self.callback?("\(self.commitNum)회", "\(continuousCommit)일")
                                     })
                                     // 여기서 새로운 뷰 컨트롤러로 데이터를 segue 등으로 넘겨야 할듯
                                 }

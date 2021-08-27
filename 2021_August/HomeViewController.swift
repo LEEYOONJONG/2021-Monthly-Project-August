@@ -25,7 +25,11 @@ class HomeViewController: UIViewController {
         LoginManager.shared.callback = { str1, str2 in
             OperationQueue.main.addOperation {
                 self.commitNumLabel.text = str1
-                self.continuousCommitNumLabel.text = str2+"일"
+                if str2 == "0일" {
+                    self.continuousCommitNumLabel.text = "오늘 커밋을 안했어요!"
+                } else {
+                    self.continuousCommitNumLabel.text = str2
+                }
             }
         }
     }
@@ -34,8 +38,24 @@ class HomeViewController: UIViewController {
         if KeychainSwift().get("accessToken") == nil {
             LoginManager.shared.requestCode()
         } else {
+            let alert = UIAlertController(title: "알려드려요", message: "이미 GitHub 계정이 등록되어 있어요.", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            let when = DispatchTime.now()+2
+            DispatchQueue.main.asyncAfter(deadline: when){
+                alert.dismiss(animated: true, completion: nil)
+            }
             print("이미 등록되어 있습니다.")
         }
+    }
+    @IBAction func resignupClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "주의", message: "먼저 Safari에서 GitHub 계정을 로그아웃 해주세요.", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "돌아가기", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "재등록", style: .cancel){action in
+            LoginManager.shared.requestCode()
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     @IBAction func todayCommitClicked(_ sender: Any) {
         OperationQueue().addOperation {
