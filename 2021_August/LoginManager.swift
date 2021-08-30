@@ -51,7 +51,7 @@ class LoginManager {
         }
     }
     func getUser(){
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
             self.callback?("계산 중입니다...", "이것도 계산 중입니다...")
         })
         let url = "https://api.github.com/user"
@@ -97,6 +97,10 @@ class LoginManager {
                     
                     for week in 1...53{
                         // 퍼센트 뷰에 표시
+                        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
+                            self.callback?("\(Int(Double(week)/53*100))%", "\(Int(Double(week)/53*100))%")
+                        })
+                        // 크롤링 작업
                         for day in 1...7{
                             let element:Elements = try doc.select("#js-pjax-container > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.flex-shrink-0.col-12.col-md-9.mb-4.mb-md-0 > div:nth-child(2) > div > div.mt-4.position-relative > div.js-yearly-contributions > div > div > div > svg > g > g:nth-child(\(week)) > rect:nth-child(\(day))")
                             for i in element{
@@ -119,10 +123,10 @@ class LoginManager {
                                 if (try i.attr("data-date") == stringDate){
                                     print("오늘의 commit 수는 ", try i.attr("data-count"))
                                     self.commitNum = "\(Int(try i.attr("data-count")) ?? -1)"
-                                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
-                                        self.callback?("\(self.commitNum)회", "\(continuousCommit)일")
-                                    })
-                                    // 여기서 새로운 뷰 컨트롤러로 데이터를 segue 등으로 넘겨야 할듯
+                                    // 이렇게 주석 처리해도 문제 없음
+                                    // DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
+                                    self.callback?("\(self.commitNum)회", "\(continuousCommit)일")
+                                    //                                    })
                                 }
                             }
                         }
