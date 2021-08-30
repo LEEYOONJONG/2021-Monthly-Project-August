@@ -14,6 +14,7 @@ class LoginManager {
     var commitNum = ""
     
     var callback:((String, String) -> ())?
+    var commitlogCallback:(([String], [String]) -> ())?
     
     func requestCode(){
         let scope="user"
@@ -89,12 +90,22 @@ class LoginManager {
                     let doc:Document = try SwiftSoup.parse(responseValue)
                     var continuousCommit:Int = 0
                     // 전체 탐색
+                    
+                    // HomeVC에 넘겨주기 위한 배열
+                    var dateArray:[String]=[]
+                    var countArray:[String]=[]
+                    
                     for week in 1...53{
                         // 퍼센트 뷰에 표시
                         for day in 1...7{
                             let element:Elements = try doc.select("#js-pjax-container > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.flex-shrink-0.col-12.col-md-9.mb-4.mb-md-0 > div:nth-child(2) > div > div.mt-4.position-relative > div.js-yearly-contributions > div > div > div > svg > g > g:nth-child(\(week)) > rect:nth-child(\(day))")
                             for i in element{
-                                //                                print(try i.attr("data-date"), try i.attr("data-count"))
+                                print(try i.attr("data-date"), try i.attr("data-count"))
+                                
+                                // callback으로 념겨주기 위한
+                                dateArray.append(try i.attr("data-date"))
+                                countArray.append(try i.attr("data-count"))
+                                
                                 if Int(try i.attr("data-count"))! > 0 {
                                     continuousCommit += 1
                                 } else {
@@ -117,7 +128,10 @@ class LoginManager {
                         }
                         
                     }
-                    
+                    //필요할까? -> 필요 없음
+//                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
+                        self.commitlogCallback?(dateArray, countArray)
+//                    })
                 }
                 
                 catch{

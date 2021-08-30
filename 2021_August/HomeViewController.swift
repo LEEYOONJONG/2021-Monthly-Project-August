@@ -7,18 +7,25 @@
 
 import UIKit
 import KeychainSwift
+import Charts
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var todayCommitView: UIView!
     @IBOutlet weak var continuousCommitView: UIView!
+    @IBOutlet weak var commitGraphView: UIView!
+    
+    @IBOutlet weak var lineChartView: LineChartView!
     
     @IBOutlet weak var todayCommitButton: UIButton!
     @IBOutlet weak var commitNumLabel: UILabel!
     @IBOutlet weak var continuousCommitNumLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        chartInit()
         OperationQueue().addOperation {
             if KeychainSwift().get("accessToken") == nil {
                 LoginManager.shared.requestCode()
@@ -35,6 +42,11 @@ class HomeViewController: UIViewController {
                 } else {
                     self.continuousCommitNumLabel.text = str2
                 }
+            }
+        }
+        LoginManager.shared.commitlogCallback = {dateArr, commitArr in
+            OperationQueue.main.addOperation {
+                self.chartSet(dateArr, commitArr)
             }
         }
     }
@@ -111,10 +123,73 @@ class HomeViewController: UIViewController {
                 return #colorLiteral(red: 0.890386641, green: 0.9659765363, blue: 0.9694517255, alpha: 1)
             }
         }
+        let commitGraphViewColor = UIColor {(trait) -> UIColor in
+            if #available(iOS 13, *){
+                if trait.userInterfaceStyle == .dark {
+                    return #colorLiteral(red: 0.235019207, green: 0.1052800193, blue: 0, alpha: 1)
+                } else {
+                    return #colorLiteral(red: 1, green: 0.9595724097, blue: 0.9074905539, alpha: 1)
+                }
+            } else {
+                return #colorLiteral(red: 1, green: 0.9595724097, blue: 0.9074905539, alpha: 1)
+            }
+        }
         todayCommitView.layer.cornerRadius = 10
         continuousCommitView.layer.cornerRadius = 10
+        commitGraphView.layer.cornerRadius = 10
+        
         todayCommitView.layer.backgroundColor = todayCommitViewColor.cgColor
         continuousCommitView.layer.backgroundColor = continuousCommitViewColor.cgColor
+        commitGraphView.layer.backgroundColor = commitGraphViewColor.cgColor
     }
-    
+    func chartInit(){
+        lineChartView.noDataText = "계산 중입니다."
+        lineChartView.noDataFont = .systemFont(ofSize: 20)
+        lineChartView.noDataTextColor = .lightGray
+    }
+    func chartSet(_ dateArr:[String], _ commitArr:[String]){
+        
+        // 데이터 생성
+        var dataEntries: [ChartDataEntry] = []
+        for i in 0..<dateArr.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: Double(commitArr[i])!)
+            dataEntries.append(dataEntry)
+        }
+
+        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "커밋 수")
+        // 차트 모양 -
+        chartDataSet.mode = .cubicBezier
+        chartDataSet.drawCirclesEnabled = false
+        chartDataSet.lineWidth = 2
+        // 차트 컬러
+        chartDataSet.colors = [.systemGreen]
+        chartDataSet.fill = Fill(color: .systemGreen)
+        chartDataSet.fillAlpha = 0.7
+        chartDataSet.drawFilledEnabled = true
+        // 선택, 줌 안되게
+        chartDataSet.highlightEnabled = false
+        lineChartView.doubleTapToZoomEnabled = false
+        
+        // ** 축
+        // x축 레이블 위치, 포맷 조정
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dateArr)
+        // x축 레이블 개수 최대, y축 오른쪽 숨기기
+        lineChartView.xAxis.setLabelCount(4, force: false)
+        lineChartView.rightAxis.enabled = false
+        // 기타
+        lineChartView.leftAxis.labelFont = .boldSystemFont(ofSize: 12)
+        // bottom space to zero
+        lineChartView.leftAxis.axisMinimum = 0
+        lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 10)
+        
+        // 데이터 삽입
+        let chartData = LineChartData(dataSet: chartDataSet)
+        chartData.setDrawValues(false)
+        lineChartView.data = chartData
+        // animation
+        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+    }
 }
+
