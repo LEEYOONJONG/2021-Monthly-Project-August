@@ -62,7 +62,7 @@ class LoginManager {
                 switch response.result{
                 case .success(let jsonData):
                     //                    print(json as! [String: Any])
-//                    print(jsonData)
+                    //                    print(jsonData)
                     let jsonDictionary = [jsonData]
                     for i in jsonDictionary{
                         if let obj = i as? [String: Any]{
@@ -133,9 +133,9 @@ class LoginManager {
                         
                     }
                     //필요할까? -> 필요 없음
-//                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
-                        self.commitlogCallback?(dateArray, countArray)
-//                    })
+                    //                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
+                    self.commitlogCallback?(dateArray, countArray)
+                    //                    })
                 }
                 
                 catch{
@@ -143,5 +143,84 @@ class LoginManager {
                 }
             }
         }
+    }
+    
+    
+    ////
+    private var time:Date?
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .long
+        return formatter
+    }()
+    func testFetch(_ completion: () -> Void){
+        time = Date()
+        completion()
+    }
+    
+    func backgroundFetch(){
+        print("==> background Fetch")
+        AF.request(self.githubURL).responseString { response in
+            guard let responseValue = response.value else{
+                return
+            }
+            
+            do {
+                let doc:Document = try SwiftSoup.parse(responseValue)
+                
+                for day in 1...7{
+                    let element:Elements = try doc.select("#js-pjax-container > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.flex-shrink-0.col-12.col-md-9.mb-4.mb-md-0 > div:nth-child(2) > div > div.mt-4.position-relative > div.js-yearly-contributions > div > div > div > svg > g > g:nth-child(53) > rect:nth-child(\(day))")
+                    for i in element{
+                        print(try i.attr("data-date"), try i.attr("data-count"))
+                        
+                        let nowDate = Date()
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        dateFormatter.timeZone = TimeZone(abbreviation: "KST")
+                        let stringDate = dateFormatter.string(from: nowDate)
+                        if (try i.attr("data-date") == stringDate){
+                            print("오늘의 commit 수는 ", try i.attr("data-count"))
+                            self.commitNum = "\(Int(try i.attr("data-count")) ?? -1)"
+                            // 이렇게 주석 처리해도 문제 없음
+                            // DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
+//                            self.callback?("\(self.commitNum)회", "\(continuousCommit)일")
+                            //                                    })
+                        }
+                    }
+                }
+                
+                
+                //필요할까? -> 필요 없음
+                //                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
+//                self.commitlogCallback?(dateArray, countArray)
+                //                    })
+            }
+            
+            catch{
+                print("error occured")
+            }
+            
+        }
+        //        if let time = time {
+        ////            self.callback?("\(dateFormatter.string(from: time))", "업뎃됨")
+        //            print("\(dateFormatter.string(from: time)) 업뎃됨")
+        //
+        //            // alert
+        //
+        //            let content = UNMutableNotificationContent()
+        //            content.title = "Ssukssuk"
+        //            content.subtitle = "오늘 GitHub에 커밋하셨나요?"
+        //            content.body = "지금 커밋수는 \(commitNum)입니다!"
+        //            content.sound = UNNotificationSound.default
+        //
+        //            let date = Calendar.current.dateComponents([ .hour, .minute, .second], from: time)
+        //            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        //            let request = UNNotificationRequest(identifier: "backgroundAlert", content: content, trigger: trigger)
+        //            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        //        } else {
+        //            self.callback?("no yet updated","not yet updated")
+        //        }
+        
     }
 }
