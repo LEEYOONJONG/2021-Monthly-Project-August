@@ -165,7 +165,6 @@ class LoginManager {
             guard let responseValue = response.value else{
                 return
             }
-            
             do {
                 let doc:Document = try SwiftSoup.parse(responseValue)
                 
@@ -182,19 +181,23 @@ class LoginManager {
                         if (try i.attr("data-date") == stringDate){
                             print("오늘의 commit 수는 ", try i.attr("data-count"))
                             self.commitNum = "\(Int(try i.attr("data-count")) ?? -1)"
-                            // 이렇게 주석 처리해도 문제 없음
-                            // DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
-//                            self.callback?("\(self.commitNum)회", "\(continuousCommit)일")
-                            //                                    })
+                            
                         }
                     }
                 }
                 
+                // noti
+                let content = UNMutableNotificationContent()
+                content.title = "Ssukssuk"
+                content.subtitle = "** background에서 실행합니다 **"
+                content.body = "지금 커밋수는 \(self.commitNum)입니다 / 시각 : \(self.dateFormatter.string(from:Date()))"
+                content.sound = UNNotificationSound.default
                 
-                //필요할까? -> 필요 없음
-                //                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
-//                self.commitlogCallback?(dateArray, countArray)
-                //                    })
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: "backgroundAlert", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
             
             catch{
