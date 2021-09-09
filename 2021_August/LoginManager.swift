@@ -159,7 +159,13 @@ class LoginManager {
         if (backgroundFetchEnabled){
             print("===========> background Fetch <============")
             time = Date()
-            completion()
+            
+            let newDateComponents = Calendar.current.dateComponents([.hour, .minute], from: time!)
+            
+            print("** current hour : ", newDateComponents.hour!)
+            if (newDateComponents.hour! > 15){
+                completion()
+            }
         }
     }
     
