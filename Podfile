@@ -10,4 +10,5 @@ pod 'SwiftSoup'
 pod 'Alamofire', '~> 5.4'
 pod 'KeychainSwift', '~> 19.0'
 pod 'Charts'
+pod 'RealmSwift', '~>10'
 end

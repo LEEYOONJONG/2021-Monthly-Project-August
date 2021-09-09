@@ -94,7 +94,7 @@ class LoginManager {
                     // HomeVC에 넘겨주기 위한 배열
                     var dateArray:[String]=[]
                     var countArray:[String]=[]
-                    
+                    var isCrawlError:Bool = true
                     for week in 1...53{
                         // 퍼센트 뷰에 표시
                         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
@@ -127,10 +127,14 @@ class LoginManager {
                                     // DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now(), execute: {
                                     self.callback?("\(self.commitNum)회", "\(continuousCommit)일")
                                     //                                    })
+                                    isCrawlError = false
                                 }
                             }
                         }
                         
+                    }
+                    if isCrawlError{
+                        self.callback?("오늘 데이터 확인 불가", "GitHub 데이터 미업데이트")
                     }
                     //필요할까? -> 필요 없음
                     //                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now()+1, execute: {
