@@ -147,6 +147,7 @@ class LoginManager {
     
     
     ////
+    var backgroundFetchEnabled:Bool = true
     private var time:Date?
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -155,12 +156,14 @@ class LoginManager {
         return formatter
     }()
     func testFetch(_ completion: () -> Void){
-        time = Date()
-        completion()
+        if (backgroundFetchEnabled){
+            print("===========> background Fetch <============")
+            time = Date()
+            completion()
+        }
     }
     
     func backgroundFetch(){
-        print("==> background Fetch")
         AF.request(self.githubURL).responseString { response in
             guard let responseValue = response.value else{
                 return
@@ -187,17 +190,19 @@ class LoginManager {
                 }
                 
                 // noti
-                let content = UNMutableNotificationContent()
-                content.title = "Ssukssuk"
-                content.subtitle = "** background에서 실행합니다 **"
-                content.body = "지금 커밋수는 \(self.commitNum)입니다 / 시각 : \(self.dateFormatter.string(from:Date()))"
-                content.sound = UNNotificationSound.default
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-                
-                let request = UNNotificationRequest(identifier: "backgroundAlert", content: content, trigger: trigger)
-                
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                if self.commitNum == "0"{
+                    let content = UNMutableNotificationContent()
+                    content.title = "Ssukssuk"
+                    content.subtitle = "커밋이 필요해요"
+                    content.body = "\(self.dateFormatter.string(from:Date())) 기준, 아직 커밋을 하지 않았어요!"
+                    content.sound = UNNotificationSound.default
+                    
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier: "backgroundAlert", content: content, trigger: trigger)
+                    
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                }
             }
             
             catch{

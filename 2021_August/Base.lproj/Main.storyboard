@@ -32,7 +32,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex1-KL-FYQ">
-                                                        <rect key="frame" x="166.33333333333334" y="67" width="17.333333333333343" height="36"/>
+                                                        <rect key="frame" x="166.66666666666666" y="67" width="17" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1f-He-6PG">
-                                                        <rect key="frame" x="166.33333333333334" y="67" width="17.333333333333343" height="36"/>
+                                                        <rect key="frame" x="166.66666666666666" y="67" width="17" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -204,32 +204,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="eIQ-cM-EyS">
-                                <rect key="frame" x="0.0" y="316" width="390" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매일 지정한 시각에 알려드려요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTM-Yc-SR3">
+                                <rect key="frame" x="16" y="177" width="202.66666666666666" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="eIQ-cM-EyS">
+                                <rect key="frame" x="0.0" y="240" width="390" height="216"/>
                                 <connections>
                                     <action selector="changeDatePicker:" destination="Tbw-dN-via" eventType="valueChanged" id="E03-sN-lRP"/>
                                 </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi8-ed-Q22">
-                                <rect key="frame" x="20" y="553" width="374" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi8-ed-Q22">
+                                <rect key="frame" x="0.0" y="506" width="390" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="커밋을 안했다면 수시로도 알려드려요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSd-NB-Tv1">
+                                <rect key="frame" x="15.999999999999986" y="630" width="246.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수시로 커밋 정보 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yag-Rk-eOr">
+                                <rect key="frame" x="48" y="666" width="128.33333333333334" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6V0-JY-82d">
+                                <rect key="frame" x="311" y="659.66666666666663" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchDidChange:" destination="Tbw-dN-via" eventType="valueChanged" id="9tR-Ye-xOj"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시각은 내 아이폰의 프로세스 상태에 의해 결정되며, 반드시 알림이 도착한다고 보장하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjW-wH-BFm">
+                                <rect key="frame" x="48" y="693" width="284" height="28.666666666666629"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ja1-K3-6kg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ja1-K3-6kg" firstAttribute="trailing" secondItem="tjW-wH-BFm" secondAttribute="trailing" constant="58" id="1AY-cZ-ObT"/>
+                            <constraint firstItem="hi8-ed-Q22" firstAttribute="leading" secondItem="ja1-K3-6kg" secondAttribute="leading" id="2Yw-r6-jkU"/>
+                            <constraint firstItem="ja1-K3-6kg" firstAttribute="trailing" secondItem="hi8-ed-Q22" secondAttribute="trailing" id="3Nj-3w-tPB"/>
+                            <constraint firstItem="sTM-Yc-SR3" firstAttribute="leading" secondItem="ja1-K3-6kg" secondAttribute="leading" constant="16" id="4nR-2M-xLd"/>
+                            <constraint firstItem="WSd-NB-Tv1" firstAttribute="top" secondItem="hi8-ed-Q22" secondAttribute="bottom" constant="100" id="84Q-hq-AVU"/>
+                            <constraint firstItem="Yag-Rk-eOr" firstAttribute="leading" secondItem="ja1-K3-6kg" secondAttribute="leading" constant="48" id="C2p-an-XVt"/>
+                            <constraint firstItem="ja1-K3-6kg" firstAttribute="trailing" secondItem="6V0-JY-82d" secondAttribute="trailing" constant="30" id="GU7-uc-Fl6"/>
+                            <constraint firstItem="ja1-K3-6kg" firstAttribute="trailing" secondItem="eIQ-cM-EyS" secondAttribute="trailing" id="Isr-wc-0yt"/>
+                            <constraint firstItem="eIQ-cM-EyS" firstAttribute="top" secondItem="sTM-Yc-SR3" secondAttribute="bottom" constant="42" id="KvG-s5-OC9"/>
+                            <constraint firstItem="6V0-JY-82d" firstAttribute="centerY" secondItem="Yag-Rk-eOr" secondAttribute="centerY" id="Vc4-J7-2hN"/>
+                            <constraint firstItem="hi8-ed-Q22" firstAttribute="top" secondItem="eIQ-cM-EyS" secondAttribute="bottom" constant="50" id="VdT-Pe-UbS"/>
+                            <constraint firstItem="eIQ-cM-EyS" firstAttribute="leading" secondItem="ja1-K3-6kg" secondAttribute="leading" id="a7y-y4-RId"/>
+                            <constraint firstItem="WSd-NB-Tv1" firstAttribute="leading" secondItem="ja1-K3-6kg" secondAttribute="leading" constant="16" id="hpf-Du-NfP"/>
+                            <constraint firstItem="tjW-wH-BFm" firstAttribute="top" secondItem="Yag-Rk-eOr" secondAttribute="bottom" constant="9" id="mik-pV-5hG"/>
+                            <constraint firstItem="Yag-Rk-eOr" firstAttribute="top" secondItem="WSd-NB-Tv1" secondAttribute="bottom" constant="15" id="pla-uR-0ys"/>
+                            <constraint firstItem="sTM-Yc-SR3" firstAttribute="top" secondItem="ja1-K3-6kg" secondAttribute="top" constant="37" id="rh0-7b-ss4"/>
+                            <constraint firstItem="tjW-wH-BFm" firstAttribute="leading" secondItem="ja1-K3-6kg" secondAttribute="leading" constant="48" id="u9M-xF-suo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="알림 시각 설정" id="RUh-28-K2C"/>
                     <connections>
+                        <outlet property="backgroundAlertSwitch" destination="6V0-JY-82d" id="Aht-J0-Ggf"/>
                         <outlet property="lblPickerTime" destination="hi8-ed-Q22" id="63E-xz-NU7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQ0-zb-UyZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756.521739130435" y="93.75"/>
+            <point key="canvasLocation" x="1755.3846153846152" y="93.127962085308056"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tiw-bf-iKY">
@@ -259,6 +307,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

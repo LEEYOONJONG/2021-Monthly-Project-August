@@ -7,6 +7,7 @@ class TimeSettingViewController: UIViewController {
     var pickerTime = "알릴 시각을 선택해주세요."
     
     @IBOutlet weak var lblPickerTime: UILabel!
+    @IBOutlet weak var backgroundAlertSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,15 @@ class TimeSettingViewController: UIViewController {
         
     }
     
+    @IBAction func switchDidChange(_ sender: UISwitch){
+        if sender.isOn{
+            print("커밋 알림 키")
+            LoginManager.shared.backgroundFetchEnabled = true
+        } else {
+            print("커밋 알림 끔")
+            LoginManager.shared.backgroundFetchEnabled = false
+        }
+    }
     
 
 }
